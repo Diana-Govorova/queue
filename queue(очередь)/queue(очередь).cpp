@@ -2,8 +2,8 @@
 
 struct QueueElement 
 {
-	QueueElement* next;
 	int value;
+	QueueElement* next;
 };
 
 struct Queue
@@ -19,7 +19,17 @@ bool isEmpty(Queue *queue)
 
 void enqueue(Queue *queue, int value)
 {
-
+	QueueElement* element = new QueueElement{ value, nullptr };
+	if (queue->tail == nullptr)
+	{
+		queue->head = element;
+		queue->tail = element;
+	}
+	else
+	{
+		queue->tail->next = element;
+		queue->tail = element;
+	}
 }
 
 int dequeue(Queue *queue)
